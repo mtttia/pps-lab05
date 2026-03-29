@@ -10,7 +10,7 @@ on:
       - 'CHANGELOG.md'
       - 'LICENSE'
       - 'README.md'
-      - '../../../pps-lab03/renovate.json'
+      - '../../../pps-lab05/renovate.json'
   pull_request:
   workflow_dispatch:
 
