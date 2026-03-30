@@ -48,7 +48,7 @@ object Course:
     private var students: Sequence[String] = Sequence()
 
     override def enrollStudent(studentId: String): Unit = students = isStudentEnrolled(studentId) match {
-      case false => Sequence.append(studentId, students)
+      case false => students.append(studentId)
       case _: Boolean => students
     }
 
@@ -145,7 +145,7 @@ object OnlineCoursePlatform:
     private var courses: Sequence[Course] = Sequence()
 
     override def addCourse(course: Course): Unit = courses = isCourseAvailable(course.courseId) match {
-      case false => Sequence.append(course, courses)
+      case false => courses.append(course)
       case _: Boolean => courses
     }
 
@@ -174,7 +174,7 @@ object OnlineCoursePlatform:
       def loop(sequence: Sequence[Course]): Unit = sequence match {
         case Sequence.Cons(head, tail) =>
           studentCourses = head.isStudentEnrolled(studentId) match {
-            case true => Sequence.append(head, studentCourses)
+            case true => studentCourses.append(head)
             case _: Boolean => studentCourses
           }
           loop(tail)
