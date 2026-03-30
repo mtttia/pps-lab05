@@ -32,7 +32,7 @@ object Vector2D:
   val i: Vector2D = apply(1.0, 0.0) // Unit vector along x-axis
   val j: Vector2D = apply(0.0, 1.0) // Unit vector along y-axis
 
-  private class Vector2DImpl(val x:Double, val y: Double) extends Vector2D {
+  private case class Vector2DImpl(x:Double,y: Double) extends Vector2D {
 
     override def +(other: Vector2D): Vector2D = Vector2D(x + other.x, y + other.y)
 
@@ -90,3 +90,7 @@ object Vector2D:
   // sum * 3.0 = (6.0, 18.0)
   // (6.0, 18.0) - (1.0, 1.0) = (5.0, 17.0)
   println(s"Multiple Ops: $multipleOps, x: ${multipleOps.x}, y: ${multipleOps.y}")
+
+  val v1Equal = Vector2D(3.0, 4.0)
+  val isEqual = v1.equals(v1Equal)
+  println(s"Check Equals: $isEqual") // true
