@@ -4,7 +4,7 @@ import it.unibo.pps.util.Optionals.Optional.*
 import it.unibo.pps.util.Optionals.Optional
 
 object Sequences: // Essentially, generic linkedlists
-  
+
   enum Sequence[E]:
     case Cons(head: E, tail: Sequence[E])
     case Nil()
@@ -20,10 +20,15 @@ object Sequences: // Essentially, generic linkedlists
         sequence = Cons(e, sequence)
       sequence.reverse()
 
+    def append[A](element: A, sequence: Sequence[A]): Sequence[A] = {
+      val newSequence = Cons(element, sequence)
+      newSequence
+    }
 
     def empty[A]: Sequence[A] = Nil()
 
     extension [A](sequence: Sequence[A])
+
       def head: Optional[A] = sequence match
         case Cons(h, _) => Just(h)
         case _ => Empty()
@@ -52,8 +57,9 @@ object Sequences: // Essentially, generic linkedlists
       def reverse(): Sequence[A] = sequence match
         case Cons(h, t) => t.reverse().concat(Cons(h, Nil()))
         case _ => Nil()
+
 @main def trySequences =
-  import Sequences.* 
+  import Sequences.*
   val sequence = Sequence(1, 2, 3)
   println(sequence)
   println(sequence.head)
